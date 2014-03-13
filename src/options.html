@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>Forms Submitter Options</title>
+        <link href="css/chrome.css" rel="stylesheet">
+    </head>
+
+    <body class="frame">
+        <div class="navigation">
+            <h1>Forms Submitter</h1>
+
+            <ul class="menu">
+                <li class="selected">
+                    <a href="#generic">Generic data</a>
+                </li>
+                <li>
+                    <a href="#sites">Sites settings</a>
+                </li>
+            </ul>
+            <ul class="menu">
+                <li>
+                    <a href="#export">Export</a>
+                </li>
+                <li>
+                    <a href="#import">Import</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mainview view">
+            <div id="generic" class="selected">
+                <header>
+                    <h1>Generic data</h1>
+                </header>
+                <div class="content">
+                    <ul class="highlightable editable"></ul>
+                    <div>
+                        <input id="generic-old-key" type="hidden" />
+                        <input id="generic-key" type="text" placeholder="Key" />
+                        <input id="generic-value" type="text" placeholder="Value" />
+                        <button data-action="save">Save</button>
+                        <button data-action="cancel" style="display:none;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sites">
+                <header>
+                    <h1>Sites settings</h1>
+                    <div class="corner">
+                        <button data-action="add">Add site</button>
+                    </div>
+                </header>
+                <div class="content">
+                </div>
+                <div class="add-site-overlay overlay" style="display: none;">
+                    <div class="page">
+                        <h1>Add site</h1>
+                        <div class="content-area">
+                            <p class="error" style="display: none;">
+                                Please fill title and URL
+                            </p>
+                            <p>
+                                <label for="site-title">Title</label><br />
+                                <input type="hidden" id="site-id" />
+                                <input type="text" id="site-title" />
+                            </p>
+                            <p>
+                                <label for="site-submit-url">Submit URL</label><br />
+                                <input type="text" id="site-submit-url" />
+                            </p>
+                        </div>
+                        <div class="action-area">
+                            <div class="action-area-right">
+                                <div class="button-strip">
+                                    <button>Cancel</button>
+                                    <button class="save">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="export">
+                <header>
+                    <h1>Export</h1>
+                    <div class="corner">
+                        <button data-action="export">Export data</button>
+                    </div>
+                </header>
+                <div class="content">
+                    <textarea readonly="readonly"></textarea>
+                </div>
+            </div>
+
+            <div id="import">
+                <header>
+                    <h1>Import</h1>
+                    <div class="corner">
+                        <button data-action="import">Import data</button>
+                    </div>
+                </header>
+                <div class="content">
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- Templates -->
+        <script type="text/html" id="common-item">
+            <li>
+                <a href="#">
+                    <dl>
+                        <dt>%KEY%</dt>
+                        <dd>%VALUE%</dd>
+                    </dl>
+                </a>
+                <a href="#" data-action="edit" class="action">edit</a>
+                <a href="#" data-action="delete" class="delete">delete</a>
+            </li>
+        </script>
+
+        <script type="text/html" id="site-section">
+            <section data-id="%SITE_ID%">
+                <h3>%SITE_TITLE% (<a href="#" data-action="edit">edit</a>,  <a href="#" data-action="delete">delete</a>)</h3>
+                <p>%SITE_URL%</p>
+                <ul class="highlightable editable mappings">
+                    %SITE_MAPPINGS%
+                </ul>
+                <div>
+                    <input type="text" name="xpath" placeholder="XPath" />
+                    <input type="hidden" name="oldxpath" />
+                    <select name="mapping">
+                        <option value="">-- Select option --</option>
+                        %GENERIC_SETTINGS%
+                    </select>
+                    <button data-action="save-mapping">Save</button>
+                    <button data-action="cancel" style="display:none;">Cancel</button>
+                </div>
+            </section>
+        </script>
+        <!-- /Templates -->
+        <script src="js/zepto.min.js"></script>
+        <script src="js/chrome.js"></script>
+        <script src="js/uuid.js"></script>
+        <script src="js/options.js"></script>
+        <script src="js/options-init.js"></script>
+    </body>
+</html>

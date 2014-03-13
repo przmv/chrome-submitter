@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+
+    "name": "Forms Submitter",
+    "description": "Semi-automatic forms submittion.",
+    "version": "%VERSION%",
+
+    "options_page": "options.html",
+
+    "permissions": [
+        "http://*/",
+        "tabs",
+        "storage"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["js/eventPage.js"],
+        "persistent": false
+    }
+}
