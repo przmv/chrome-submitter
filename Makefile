@@ -20,4 +20,4 @@ clean:
 	@rm -rf src/manifest.json
 	@rm -rf submitter.crx
 
-PHONY: all clean
+.PHONY: all clean
